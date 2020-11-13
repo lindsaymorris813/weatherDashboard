@@ -1,0 +1,12 @@
+.sidebar{
+    width: 350px;
+    position: fixed;
+    left: 0;
+    overflow-x: hidden;
+    padding-top: 30px;
+}
+
+.main-content {
+    margin-left: 350px; /* Same as the width of the sidebar */
+    padding: 30px;
+}

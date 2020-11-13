@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <span class="navbar-brand mb-0 h1">Weather Dashboard</span>
+    </nav>
+    <div class="sidebar">
+        <div class="search m-3">
+            <h4>Search for a City:</h4>
+            <form class="example" action="action_page.php">
+                <input class = "input-group-text" type="text" id = "search-input" placeholder="Search.." name="search">
+                <div class="input-group-append">
+                <button type="button" id = "search-button" class= "btn btn-primary"><i class="fa fa-search"></i></button>
+                </div>
+            </form>
+            <div id="cities" class= "m-4"></div>
+        </div>
+    </div>
+    <div class ="main-content">
+        <div id = "city">
+           <h3 id="city-name"> Sample City</h3>
+        </div>
+        <div id = "current-data">
+            <div id = "temp"></div>
+            <div id = "humidity"></div>
+            <div id = "wind-speed"></div>
+            <div id = "uv-index"></div>
+        </div>
+        <div id = "5-day-forecast">
+            <h3>5-Day Forecast:</h3>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    var cities = [];
+    
+    $("#search-button").on("click", function() {
+        event.preventDefault();
+        var newCity = $("#search-input").val();
+        var queryURL = "http://api.openweathermap.org/data/2.5/find?q=" + newCity + "&units=imperial&appid=d8fde94eabbec07723a437c6948ea8a9";
+        $("#city-name").html(newCity);
+        cities.push(newCity);
+        renderCities();
+        $.ajax({
+            url: queryURL,
+            method: "GET",
+        }).then(function(response) {
+            console.log(response);
+            var temp = response.list[0].main.temp;
+            $("#temp").html("Temperature: " + temp + "&#8457;");
+            var humidity = response.list[0].main.humidity;
+            $("#humidity").html("Humidity: " + humidity +"%");
+            var windSpeed = response.list[0].wind.speed;
+            $("#wind-speed").html("Wind Speed: " + windSpeed + "kph");
+            var lat = response.list[0].coord.lat;
+            var lon = response.list[0].coord.lon;
+            var uvQuery = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=d8fde94eabbec07723a437c6948ea8a9"
+           $.ajax({
+               url: uvQuery,
+               method: "GET"
+           }).then (function(response2){
+               console.log(response2);
+                var uvIndex = parseInt(response2.value);
+                $("#uv-index").html("UV Index: " + uvIndex);
+                if (uvIndex <= 2) {
+                    $("#uv-index").css("color", "green")
+                } else if ((uvIndex > 2) && (uvIndex < 6)) {    
+                    $("#uv-index").css("color", "yellow")
+                } else {
+                    $("#uv-index").css("color", "red")
+                }
+           })
+            
+        })
+
+    });
+
+    function renderCities() {
+        for (var c = 0; c < cities.length; c++) {
+            var newCityDiv = $("<button>");
+            newCityDiv.text(cities[c]);
+            newCityDiv.attr("id", cities[c]);
+            newCityDiv.attr("class", "btn btn-primary");
+            $("#cities").append(newCityDiv);
+            
+            
+        }
+    }
+
+    </script>
+</body>
+
+</html>
