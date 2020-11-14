@@ -6,7 +6,12 @@
     padding-top: 30px;
 }
 
-.main-content {
+#main-content {
     margin-left: 350px; /* Same as the width of the sidebar */
     padding: 30px;
+}
+
+body {
+    font-size: 18px;
+    line-height: 1.5;
 }
