@@ -22,7 +22,6 @@ $("#search-button").on("click", function () {
         url: queryURL,
         method: "GET",
     }).then(function (response) {
-        console.log(response);
         //attach temp data
         var temp = response.list[0].main.temp;
         $("#temp").html("Temperature: " + temp + "&#8457;");
@@ -41,7 +40,6 @@ $("#search-button").on("click", function () {
             url: uvQuery,
             method: "GET"
         }).then(function (response2) {
-            console.log(response2);
             //attach UV data and color code based on levels
             var uvIndex = parseInt(response2.value);
             $("#uv-index").html("UV Index: " + uvIndex);
@@ -58,13 +56,11 @@ $("#search-button").on("click", function () {
                 url: fiveDayQuery,
                 method: "GET"
             }).then(function (response3) {
-                console.log(response3);
                 var date1Card = $("#day-1-date")
                 //pull day 1 data
                 var date1 = moment().add(1, 'days').format('L')
                 date1Card.text(date1);
                 //icon
-                console.log(response3.list[0].weather[0].icon);
                 var forecast1 = response3.list[0].weather[0].icon;
                 var icon1 = $("<img>");
                 var icon1URL = "https://openweathermap.org/img/wn/" + forecast1 + "@2x.png";
@@ -130,7 +126,6 @@ $("#search-button").on("click", function () {
                 //pull day 5 data
                 var date5 = moment().add(5, 'days').format('L');
                 date5Card.text(date5);
-                console.log(response3.list[4].weather[0].icon)
                 var forecast5 = response3.list[4].weather[0].icon;
                 var icon5 = $("<img>");
 
@@ -152,7 +147,6 @@ $("#search-button").on("click", function () {
 
 $("#cities").on("click", function () {
     findCity = ($(this).text());
-    console.log(findCity);
     queryURL = "https://api.openweathermap.org/data/2.5/find?q=" + findCity + "&units=imperial&appid=d8fde94eabbec07723a437c6948ea8a9";
     getWeatherData();
 
