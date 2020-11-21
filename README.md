@@ -1,8 +1,11 @@
 # 06 Server-Side APIs: Weather Dashboard
 
-images/Screen Recording 2020-11-13 at 11.45.06 PM.mov
+[Deployed Site](https://lindsaymorris813.github.io/weatherDashboard/)
+[GitHub Repository](https://github.com/lindsaymorris813/weatherDashboard)
 
-images/Screen Shot 2020-11-13 at 11.45.29 PM.png
+Images: 
+[video of deployed site](images/recording.mov)
+[still of deployed site](images/still.png)
 
 Developers are often tasked with retrieving data from another application's API and using it in the context of their own. Third-party APIs allow developers to access their data and functionality by making requests with specific parameters to a URL. Your challenge is to build a weather dashboard that will run in the browser and feature dynamically updated HTML and CSS.
 
@@ -42,6 +45,9 @@ Viewing current and 5 day weather information for any location
 ## Contributing
 
 UNCC Bootcamp base code
+OpenWeatherMap API
+JQuery
+Bootsrap
 
 ## License
 N/A
