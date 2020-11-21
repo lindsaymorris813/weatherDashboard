@@ -6,7 +6,7 @@ $("#search-button").on("click", function () {
     clearCity();
     //create button for search city
     var newCity = $("#search-input").val();
-    var queryURL = "http://api.openweathermap.org/data/2.5/find?q=" + newCity + "&units=imperial&appid=d8fde94eabbec07723a437c6948ea8a9";
+    var queryURL = "https://api.openweathermap.org/data/2.5/find?q=" + newCity + "&units=imperial&appid=d8fde94eabbec07723a437c6948ea8a9";
     $("#city-name").html(newCity);
     localStorage.setItem("lastCity", JSON.stringify(newCity));
     var newCityDiv = $("<div>")
@@ -35,7 +35,7 @@ $("#search-button").on("click", function () {
         //get lat and long for UV data
         var lat = response.list[0].coord.lat;
         var lon = response.list[0].coord.lon;
-        var uvQuery = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=d8fde94eabbec07723a437c6948ea8a9"
+        var uvQuery = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=d8fde94eabbec07723a437c6948ea8a9"
         //new ajax to pull UV data
         $.ajax({
             url: uvQuery,
@@ -53,7 +53,7 @@ $("#search-button").on("click", function () {
                 $("#uv-index").css("color", "red")
             }
             //create five day forecasts and attached to div
-            var fiveDayQuery = "http://api.openweathermap.org/data/2.5/forecast?q=" + newCity + "&units=imperial&appid=579a0c02898001e4b2c9f684f0325b28"
+            var fiveDayQuery = "https://api.openweathermap.org/data/2.5/forecast?q=" + newCity + "&units=imperial&appid=579a0c02898001e4b2c9f684f0325b28"
             $.ajax({
                 url: fiveDayQuery,
                 method: "GET"
@@ -67,7 +67,7 @@ $("#search-button").on("click", function () {
                 console.log(response3.list[0].weather[0].icon);
                 var forecast1 = response3.list[0].weather[0].icon;
                 var icon1 = $("<img>");
-                var icon1URL = "http://openweathermap.org/img/wn/" + forecast1 + "@2x.png";
+                var icon1URL = "https://openweathermap.org/img/wn/" + forecast1 + "@2x.png";
                 icon1.attr("src", icon1URL);
                 $("#day-1-icon").append(icon1);
                 //hi temp
@@ -85,7 +85,7 @@ $("#search-button").on("click", function () {
                 date2Card.text(date2);
                 var forecast2 = response3.list[1].weather[0].icon;
                 var icon2 = $("<img>");
-                var icon2URL = "http://openweathermap.org/img/wn/" + forecast2 + "@2x.png";
+                var icon2URL = "https://openweathermap.org/img/wn/" + forecast2 + "@2x.png";
                 icon2.attr("src", icon2URL);
                 $("#day-2-icon").append(icon2);
                 var tempHi2 = response3.list[1].main.temp_max;
@@ -100,7 +100,7 @@ $("#search-button").on("click", function () {
                 date3Card.text(date3);
                 var forecast3 = response3.list[2].weather[0].icon;
                 var icon = $("<img>");
-                var iconURL = "http://openweathermap.org/img/wn/" + forecast3 + "@2x.png";
+                var iconURL = "https://openweathermap.org/img/wn/" + forecast3 + "@2x.png";
                 icon.attr("src", iconURL);
                 $("#day-3-icon").append(icon);
                 var tempHi = response3.list[2].main.temp_max;
@@ -116,7 +116,7 @@ $("#search-button").on("click", function () {
                 date4Card.text(date4);
                 var forecast4 = response3.list[3].weather[0].icon;
                 var icon4 = $("<img>");
-                var icon4URL = "http://openweathermap.org/img/wn/" + forecast4 + "@2x.png";
+                var icon4URL = "https://openweathermap.org/img/wn/" + forecast4 + "@2x.png";
                 icon4.attr("src", icon4URL);
                 $("#day-4-icon").append(icon4);
                 var tempHi4 = response3.list[3].main.temp_max;
@@ -134,7 +134,7 @@ $("#search-button").on("click", function () {
                 var forecast5 = response3.list[4].weather[0].icon;
                 var icon5 = $("<img>");
 
-                var icon5URL = "http://openweathermap.org/img/wn/" + forecast5 + "@2x.png";
+                var icon5URL = "https://openweathermap.org/img/wn/" + forecast5 + "@2x.png";
                 icon5.attr("src", icon5URL);
                 $("#day-5-icon").append(icon5);
                 var tempHi5 = response3.list[4].main.temp_max;
@@ -153,7 +153,7 @@ $("#search-button").on("click", function () {
 $("#cities").on("click", function () {
     findCity = ($(this).text());
     console.log(findCity);
-    queryURL = "http://api.openweathermap.org/data/2.5/find?q=" + findCity + "&units=imperial&appid=d8fde94eabbec07723a437c6948ea8a9";
+    queryURL = "https://api.openweathermap.org/data/2.5/find?q=" + findCity + "&units=imperial&appid=d8fde94eabbec07723a437c6948ea8a9";
     getWeatherData();
 
 })
@@ -222,7 +222,7 @@ function getWeatherData() {
         //get lat and long for UV data
         var lat = response.list[0].coord.lat;
         var lon = response.list[0].coord.lon;
-        var uvQuery = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=d8fde94eabbec07723a437c6948ea8a9"
+        var uvQuery = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=d8fde94eabbec07723a437c6948ea8a9"
         //new ajax to pull UV data
         $.ajax({
             url: uvQuery,
@@ -240,7 +240,7 @@ function getWeatherData() {
                 $("#uv-index").css("color", "red")
             }
             //create five day forecasts and attached to div
-            var fiveDayQuery = "http://api.openweathermap.org/data/2.5/forecast?q=" + findCity + "&units=imperial&appid=579a0c02898001e4b2c9f684f0325b28"
+            var fiveDayQuery = "https://api.openweathermap.org/data/2.5/forecast?q=" + findCity + "&units=imperial&appid=579a0c02898001e4b2c9f684f0325b28"
             $.ajax({
                 url: fiveDayQuery,
                 method: "GET"
@@ -254,7 +254,7 @@ function getWeatherData() {
                 console.log(response3.list[0].weather[0].icon);
                 var forecast1 = response3.list[0].weather[0].icon;
                 var icon1 = $("<img>");
-                var icon1URL = "http://openweathermap.org/img/wn/" + forecast1 + "@2x.png";
+                var icon1URL = "https://openweathermap.org/img/wn/" + forecast1 + "@2x.png";
                 icon1.attr("src", icon1URL);
                 $("#day-1-icon").append(icon1);
                 //hi temp
@@ -272,7 +272,7 @@ function getWeatherData() {
                 date2Card.text(date2);
                 var forecast2 = response3.list[1].weather[0].icon;
                 var icon2 = $("<img>");
-                var icon2URL = "http://openweathermap.org/img/wn/" + forecast2 + "@2x.png";
+                var icon2URL = "https://openweathermap.org/img/wn/" + forecast2 + "@2x.png";
                 icon2.attr("src", icon2URL);
                 $("#day-2-icon").append(icon2);
                 var tempHi2 = response3.list[1].main.temp_max;
@@ -287,7 +287,7 @@ function getWeatherData() {
                 date3Card.text(date3);
                 var forecast3 = response3.list[2].weather[0].icon;
                 var icon = $("<img>");
-                var iconURL = "http://openweathermap.org/img/wn/" + forecast3 + "@2x.png";
+                var iconURL = "https://openweathermap.org/img/wn/" + forecast3 + "@2x.png";
                 icon.attr("src", iconURL);
                 $("#day-3-icon").append(icon);
                 var tempHi = response3.list[2].main.temp_max;
@@ -303,7 +303,7 @@ function getWeatherData() {
                 date4Card.text(date4);
                 var forecast4 = response3.list[3].weather[0].icon;
                 var icon4 = $("<img>");
-                var icon4URL = "http://openweathermap.org/img/wn/" + forecast4 + "@2x.png";
+                var icon4URL = "https://openweathermap.org/img/wn/" + forecast4 + "@2x.png";
                 icon4.attr("src", icon4URL);
                 $("#day-4-icon").append(icon4);
                 var tempHi4 = response3.list[3].main.temp_max;
@@ -321,7 +321,7 @@ function getWeatherData() {
                 var forecast5 = response3.list[4].weather[0].icon;
                 var icon5 = $("<img>");
 
-                var icon5URL = "http://openweathermap.org/img/wn/" + forecast5 + "@2x.png";
+                var icon5URL = "https://openweathermap.org/img/wn/" + forecast5 + "@2x.png";
                 icon5.attr("src", icon5URL);
                 $("#day-5-icon").append(icon5);
                 var tempHi5 = response3.list[4].main.temp_max;
