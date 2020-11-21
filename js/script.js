@@ -157,11 +157,15 @@ $("#cities").on("click", function () {
 function renderCity() {
     var lastCityDiv = $("<button>");
     lastCity = JSON.parse(localStorage.getItem("lastCity"))
+    if (lastCity !== null) {
     lastCityDiv.text(lastCity);
     lastCityDiv.attr("id", "cityBtn");
     lastCityDiv.attr("data-city", lastCity)
     lastCityDiv.attr("class", "btn btn-primary mt-3");
     $("#cities").append(lastCityDiv);
+    } else {
+        return;
+    }
 
 }
 
